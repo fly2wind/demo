@@ -1,0 +1,56 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.thoughtworks.demo",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "4.5.2",
+    "baseName": "demo",
+    "packageName": "com.thoughtworks.demo",
+    "packageFolder": "com/thoughtworks/demo",
+    "serverPort": "8080",
+    "authenticationType": "session",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSocialSignIn": false,
+    "rememberMeKey": "272dd5552773cd23e7a5939507644c443a9012e6",
+    "clientFramework": "angular2",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "applicationType": "monolith",
+    "testFrameworks": [
+      "gatling",
+      "cucumber",
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-docker",
+        "version": "2.2.0"
+      },
+      {
+        "name": "generator-jhipster-ci",
+        "version": "1.0.0"
+      },
+      {
+        "name": "generator-jhipster-swagger2markup",
+        "version": "1.2.0"
+      }
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "zh-cn"
+    ]
+  }
+}
