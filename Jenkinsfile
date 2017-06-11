@@ -65,9 +65,7 @@ node {
     }
 
     stage('deploy uat') {
-        docker.image('evgeniyklemin/rancher-compose').withRun("-e RANCHER_URL=http://10.202.128.107:8080/v2-beta/projects/1a118 -e RANCHER_ACCESS_KEY=E4ADDAB2FB34352E015C -e RANCHER_SECRET_KEY=4ErqRBJdJQVs62VDJ43MwMQV8iYp9xoJupBJ29YU -e COMPOSE_PROJECT_NAME=demo") { c->
-          sh " up -d -c --upgrade"
-        }
+        docker.image('evgeniyklemin/rancher-compose').withRun("-e RANCHER_URL=http://10.202.128.107:8080/v2-beta/projects/1a118 -e RANCHER_ACCESS_KEY=E4ADDAB2FB34352E015C -e RANCHER_SECRET_KEY=4ErqRBJdJQVs62VDJ43MwMQV8iYp9xoJupBJ29YU -e COMPOSE_PROJECT_NAME=demo", "up -d -c --upgrade")
     }
 
 }
