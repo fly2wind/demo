@@ -59,7 +59,7 @@ node {
     }
 
     stage('publish docker') {
-        docker.withRegistry('http://thoughtworks.io:5000', 'registry-login') {
+        docker.withRegistry('http://thoughtworks.io:5001', 'registry-login') {
             dockerImage.push 'latest'
         }
     }
