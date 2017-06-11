@@ -15,7 +15,7 @@ node {
             sh "./gradlew clean --no-daemon"
         }
 
-        stage('npm install') {
+        stage('prepare environment') {
             sh "./gradlew npmInstall -PnodeInstall --no-daemon"
         }
 
@@ -65,11 +65,9 @@ node {
     }
 
     stage('deploy uat') {
-      env.RANCHER_URL        = "http://10.202.128.107:8080/v2-beta/projects/1a118"
-      env.RANCHER_STACK      = "demo"
-      env.RANCHER_ACCESS_KEY = "E4ADDAB2FB34352E015C"
-      env.RANCHER_SECRET_KEY = "4ErqRBJdJQVs62VDJ43MwMQV8iYp9xoJupBJ29YU"
-
-      sh '''rancher-compose --url ${env.RANCHER_URL} --access-key ${env.RANCHER_ACCESS_KEY} --secret-key ${env.RANCHER_SECRET_KEY} -p $RANCHER_STACK up -d -c --upgrade'''
+        docker.image('benchflow/rancher-compose').withRun() { c->
+          sh " --url http://10.202.128.107:8080/v2-beta/projects/1a11 --access-key E4ADDAB2FB34352E015C --secret-key 4ErqRBJdJQVs62VDJ43MwMQV8iYp9xoJupBJ29YU -p demo up -d -c --upgrade"    
+        }
     }
+
 }
