@@ -65,11 +65,11 @@ node {
     }
 
     stage('deploy uat') {
-      env.RANCHER_URL        = "http://10.202.128.107:8080/env/1a118"
+      env.RANCHER_URL        = "http://10.202.128.107:8080/v2-beta/projects/1a118"
       env.RANCHER_STACK      = "demo"
-      env.RANCHER_ACCESS_KEY = "527E6EFA8A61EBC7530D"
-      env.RANCHER_SECRET_KEY = "Pd4y2oSffzyEUThQwdwdpCpo1Vnc9qdif6u7Gf8U"
+      env.RANCHER_ACCESS_KEY = "E4ADDAB2FB34352E015C"
+      env.RANCHER_SECRET_KEY = "4ErqRBJdJQVs62VDJ43MwMQV8iYp9xoJupBJ29YU"
 
-      sh '''rancher-compose --access-key ${env.RANCHER_ACCESS_KEY} --secret-key ${env.RANCHER_SECRET_KEY} -p $RANCHER_STACK up -d -c --upgrade'''
+      sh '''rancher-compose --url ${env.RANCHER_URL} --access-key ${env.RANCHER_ACCESS_KEY} --secret-key ${env.RANCHER_SECRET_KEY} -p $RANCHER_STACK up -d -c --upgrade'''
     }
 }
