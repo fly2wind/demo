@@ -16,12 +16,12 @@ node {
         }
 
         stage('prepare environment') {
-            sh "./gradlew npmInstall -PnodeInstall --no-daemon"
+            sh "./gradlew npmInstall -PnodeInstall"
         }
 
         stage('backend tests') {
             try {
-                sh "./gradlew test -PnodeInstall --no-daemon"
+                sh "./gradlew test -PnodeInstall"
             } catch(err) {
                 throw err
             } finally {
@@ -31,7 +31,7 @@ node {
 
         stage('frontend tests') {
             try {
-                sh "./gradlew npm_test -PnodeInstall --no-daemon"
+                sh "./gradlew npm_test -PnodeInstall"
             } catch(err) {
                 throw err
             } finally {
@@ -40,7 +40,7 @@ node {
         }
 
         stage('packaging') {
-            sh "./gradlew bootRepackage -x test -Pprod -PnodeInstall --no-daemon"
+            sh "./gradlew bootRepackage -x test -Pprod -PnodeInstall"
             archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
         }
 
@@ -66,7 +66,7 @@ node {
 
     stage('deploy uat') {
         docker.image('evgeniyklemin/rancher-compose').withRun() { c->
-          sh "--url http://10.202.128.107:8080/v2-beta/projects/1a11 --access-key E4ADDAB2FB34352E015C --secret-key 4ErqRBJdJQVs62VDJ43MwMQV8iYp9xoJupBJ29YU -p demo up -d -c --upgrade"    
+          sh "--url http://10.202.128.107:8080/v2-beta/projects/1a118 --access-key E4ADDAB2FB34352E015C --secret-key 4ErqRBJdJQVs62VDJ43MwMQV8iYp9xoJupBJ29YU -p demo up -d -c --upgrade"
         }
     }
 
