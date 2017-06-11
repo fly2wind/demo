@@ -6,16 +6,9 @@ node {
     }
 
     docker.image('openjdk:8').inside('-u root -e GRADLE_USER_HOME=.gradle') {
-        stage('check java') {
-            sh "java -version"
-        }
-
-        stage('clean') {
-            sh "chmod +x gradlew"
-            sh "./gradlew clean --no-daemon"
-        }
-
         stage('prepare environment') {
+            sh "chmod +x gradlew"
+            sh "./gradlew clean"
             sh "./gradlew npmInstall -PnodeInstall"
         }
 
@@ -39,7 +32,7 @@ node {
             }
         }
 
-        stage('packaging') {
+        stage('package') {
             sh "./gradlew bootRepackage -x test -Pprod -PnodeInstall"
             archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
         }
@@ -71,5 +64,8 @@ node {
         }
     }
 
+    stage('deploy prod') {
+      input 'deploy to prod?'
+    }
 
 }
