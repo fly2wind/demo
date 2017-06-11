@@ -67,7 +67,7 @@ node {
 
     docker.image('identt/rancher-compose').inside("-e COMPOSE_PROJECT_NAME=demo") {
         stage('deploy uat') {
-          sh "rancher-compose --url http://10.202.128.107:8080/v2-beta/projects/1a118 --access-key E4ADDAB2FB34352E015C --secret-key 4ErqRBJdJQVs62VDJ43MwMQV8iYp9xoJupBJ29YU up -d -c --upgrade"
+          sh "rancher-compose --url http://10.202.128.107:8080/v2-beta/projects/1a118 --access-key E4ADDAB2FB34352E015C --secret-key 4ErqRBJdJQVs62VDJ43MwMQV8iYp9xoJupBJ29YU up -p -d -c --upgrade"
         }
     }
 
