@@ -192,6 +192,9 @@ public class UserService {
         userRepository.findOneByLogin(login).ifPresent(user -> {
             userRepository.delete(user);
             log.debug("Deleted User: {}", user);
+            log.debug("Deleted User: {}", user);
+            log.debug("Deleted User: {}", user);
+            log.debug("Deleted User: {}", user);
         });
     }
 
