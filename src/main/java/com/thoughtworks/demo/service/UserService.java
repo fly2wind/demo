@@ -195,6 +195,13 @@ public class UserService {
         });
     }
 
+    public void deleteUserByLogin(String login) {
+        userRepository.findOneByLogin(login).ifPresent(user -> {
+            userRepository.delete(user);
+            log.debug("Deleted User: {}", user);
+        });
+    }
+
     public void changePassword(String password) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             String encryptedPassword = passwordEncoder.encode(password);
