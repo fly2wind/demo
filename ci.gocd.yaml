@@ -1,0 +1,27 @@
+pipelines:
+  demo:
+    group: demo
+    materials:
+      mygit:
+        git: https://github.com/fly2wind/demo.git
+    stages:
+      - prepare:
+          jobs:
+            environment:
+              tasks:
+                - script: chmod +x gradlew
+                - script: ./gradlew clean
+                - script: ./gradlew npmInstall -PnodeInstall
+      - test:
+          jobs:
+            backend:
+              tasks:
+                - script: ./gradlew test -PnodeInstall
+            frontend:
+              tasks:
+                - script: ./gradlew npm_test -PnodeInstall
+      - package:
+          jobs:
+            package:
+              tasks:
+                - script: ./gradlew bootRepackage -x test -Pprod -PnodeInstall
